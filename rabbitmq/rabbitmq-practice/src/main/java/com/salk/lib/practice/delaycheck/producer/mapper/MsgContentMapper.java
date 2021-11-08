@@ -2,29 +2,33 @@ package com.salk.lib.practice.delaycheck.producer.mapper;
 
 import java.util.List;
 
+import com.salk.lib.practice.delaycheck.producer.entity.MessageContent;
 import org.apache.ibatis.annotations.Param;
 
-import com.tuling.entity.MessageContent;
-
 /**
-* @vlog: 高于生活，源于生活
-* @desc: 类的描述:消息内容mapper
-* @author: smlz
-* @createDate: 2019/10/11 16:14
-* @version: 1.0
-*/
+ * 消息保存mapper
+ */
 public interface MsgContentMapper {
 
+
     /**
-     * 方法实现说明:保存消息
-     * @author:smlz
-     * @param messageContent:消息对象
-     * @return:
-     * @date:2019/10/11 16:16
+     * 保存消息
+     * @param messageContent
+     * @return
      */
     int saveMsgContent(MessageContent messageContent);
 
+    /**
+     * 消息条件查询
+     * @param status
+     * @param timeDiff
+     * @return
+     */
     List<MessageContent> qryNeedRetryMsg(@Param("msgStatus") Integer status, @Param("timeDiff") Integer timeDiff);
 
+    /**
+     * 更新重试次数
+     * @param msgId
+     */
     void updateMsgRetryCount(String msgId);
 }

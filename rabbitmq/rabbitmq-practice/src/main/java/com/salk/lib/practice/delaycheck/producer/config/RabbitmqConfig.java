@@ -3,18 +3,12 @@ package com.salk.lib.practice.delaycheck.producer.config;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.salk.lib.practice.delaycheck.producer.constants.MqConst;
+import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.tuling.constants.MqConst;
 
-/**
-* @vlog: 高于生活，源于生活
-* @desc: 类的描述:rabbitmq相关的配置
-* @author: smlz
-* @createDate: 2019/10/11 15:03
-* @version: 1.0
-*/
 @Configuration
 public class RabbitmqConfig {
 

@@ -1,28 +1,20 @@
 package com.salk.lib.practice.delaycheck.producer.mapper;
 
-import com.tuling.entity.OrderInfo;
+import com.salk.lib.practice.delaycheck.producer.entity.OrderInfo;
 
-/**
-* @vlog: 高于生活，源于生活
-* @desc: 类的描述:订单信息mapper
-* @author: smlz
-* @createDate: 2019/10/11 15:04
-* @version: 1.0
-*/
 public interface OrderInfoMapper {
 
     /**
-     * 方法实现说明:订单保存
-     * @author:smlz
-     * @param orderInfo:订单实体
-     * @return: int 插入的条数
-     * @date:2019/10/11 15:04
+     * 保存订单
+     * @param orderInfo
+     * @return
      */
     int saveOrderInfo(OrderInfo orderInfo);
 
     /**
-     * 删除我们的订单
+     * 更新订单
      * @param orderNo
+     * @param orderStatus
      * @return
      */
     int updateOrderStatusById(Long orderNo, Integer orderStatus);

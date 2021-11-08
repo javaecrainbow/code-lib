@@ -2,21 +2,20 @@ package com.salk.lib.practice.delaycheck.producer.controller;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.salk.lib.practice.delaycheck.producer.bo.MsgTxtBo;
+import com.salk.lib.practice.delaycheck.producer.component.ProducerMsgSender;
+import com.salk.lib.practice.delaycheck.producer.entity.OrderInfo;
+import com.salk.lib.practice.delaycheck.producer.service.IOrderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tuling.bo.MsgTxtBo;
-import com.tuling.compent.MsgSender;
-import com.tuling.entity.OrderInfo;
-import com.tuling.service.IOrderInfoService;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Created by smlz on 2019/10/11.
- */
+
 @RestController
 @Slf4j
 public class OrderController {
@@ -25,7 +24,7 @@ public class OrderController {
     private IOrderInfoService orderInfoService;
 
     @Autowired
-    private MsgSender msgSender;
+    private ProducerMsgSender msgSender;
 
     @RequestMapping("/saveOrder")
     public String saveOrder() throws JsonProcessingException {
@@ -34,10 +33,9 @@ public class OrderController {
         orderInfo.setOrderNo(System.currentTimeMillis());
         orderInfo.setCreateTime(new Date());
         orderInfo.setUpdateTime(new Date());
-        orderInfo.setUserName("smlz");
+        orderInfo.setUserName("salk");
         orderInfo.setMoney(10000);
         orderInfo.setProductNo(1);
-
         orderInfoService.saveOrderInfoWithMessage(orderInfo);
         return "ok";
     }
@@ -53,7 +51,6 @@ public class OrderController {
 
         //第一次发送消息
         msgSender.senderMsg(msgTxtBo);
-
         msgSender.senderDelayCheckMsg(msgTxtBo);
 
         return "ok";

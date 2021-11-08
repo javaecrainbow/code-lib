@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import com.salk.lib.practice.delaycheck.producer.support.DruidDataSourceProperties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -13,20 +14,15 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.tuling.support.DruidDataSourceProperties;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
-* @vlog: 高于生活，源于生活
-* @desc: 类的描述:spring整合mybaits
-* @author: smlz
-* @createDate: 2019/10/11 15:57
-* @version: 1.0
-*/
+ * @author salk
+ */
 @Slf4j
 @Configuration
-@MapperScan(basePackages = {"com.tuling.mapper"})
+@MapperScan(basePackages = {"com.salk.practice.producer.mapper"})
 @EnableConfigurationProperties(value = DruidDataSourceProperties.class)
 public class SpringMyBatisConfig {
 
@@ -35,7 +31,6 @@ public class SpringMyBatisConfig {
 
     @Bean
     public DataSource dataSource() throws SQLException {
-        System.out.println(druidDataSourceProperties);
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setUsername(druidDataSourceProperties.getUsername());
         druidDataSource.setPassword(druidDataSourceProperties.getPassword());

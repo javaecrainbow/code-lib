@@ -2,9 +2,7 @@ package com.salk.lib.practice.delaycheck.consumer.support;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-/**
- * Created by smlz on 2019/3/22.
- */
+
 @ConfigurationProperties(prefix = "spring.datasource.druid")
 public class DruidDataSourceProperties {
 

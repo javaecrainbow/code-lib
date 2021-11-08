@@ -1,25 +1,20 @@
-package com.salk.lib.practice.delaycheck.consumer.compent;
+package com.salk.lib.practice.delaycheck.consumer.component;
 
 import java.io.IOException;
 
+import com.salk.lib.practice.delaycheck.consumer.bo.MsgTxtBo;
+import com.salk.lib.practice.delaycheck.consumer.service.IProductService;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.Channel;
-import com.tuling.bo.MsgTxtBo;
-import com.tuling.exception.BizExp;
-import com.tuling.service.IProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Created by smlz on 2019/10/13.
- */
 @Component
 @Slf4j
 public class MqConsumer {
@@ -32,8 +27,6 @@ public class MqConsumer {
     @Autowired
     private IProductService productService;
 
-    @Autowired
-    private RedisTemplate redisTemplate;
 
     @Autowired
     private MsgSender msgSender;
@@ -45,10 +38,16 @@ public class MqConsumer {
 
         ObjectMapper objectMapper = new ObjectMapper();
         MsgTxtBo msgTxtBo = objectMapper.readValue(message.getBody(), MsgTxtBo.class);
-        Long deliveryTag = (Long) message.getMessageProperties().getDeliveryTag();
+        Long deliveryTag = message.getMessageProperties().getDeliveryTag();
+        // 幂等校验
+        boolean flag=false;
+        log.info("消费消息:{}", msgTxtBo);
 
-        if (redisTemplate.opsForValue().setIfAbsent(LOCK_KEY + msgTxtBo.getMsgId(), msgTxtBo.getMsgId())) {
-            log.info("消费消息:{}", msgTxtBo);
+        if(flag){
+            log.warn("请不要重复消费消息{}", msgTxtBo);
+            channel.basicReject(deliveryTag,false);
+            return;
+        }
             try {
                 //更新消息表也业务表
                 productService.updateProductStore(msgTxtBo);
@@ -59,19 +58,7 @@ public class MqConsumer {
                 channel.basicAck(deliveryTag,false);
             } catch (Exception e) {
 
-                if (e instanceof BizExp) {
-                    BizExp bizExp = (BizExp) e;
-                    log.info("数据业务异常:{},即将删除分布式锁", bizExp.getErrMsg());
-                    //删除分布式锁
-                    redisTemplate.delete(LOCK_KEY);
-                }
-
             }
-
-        } else {
-            log.warn("请不要重复消费消息{}", msgTxtBo);
-            channel.basicReject(deliveryTag,false);
-        }
 
     }
 }
