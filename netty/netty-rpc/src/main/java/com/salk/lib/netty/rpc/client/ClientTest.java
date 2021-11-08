@@ -16,7 +16,7 @@ public class ClientTest {
             serviceConsumerConfig.setMaxConnectionNumPerProvider(100);
             serviceConsumerConfig.setServiceInterface(TestIntf.class);
             TestIntf service= ServiceProxyManager.doProxy(serviceConsumerConfig);
-            for(int i=0;i<10000000;i++) {
+            for(int i=0;i<100;i++) {
                 Result hello = service.hello("test 124");
                 System.out.println("execute times========" + i);
                 System.out.println("result========" + hello.getValue());

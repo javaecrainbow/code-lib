@@ -15,6 +15,7 @@
         <module>rabbitmq-springboot</module>
         <module>rabbitmq-quickstart</module>
         <module>rabbitmq-spring</module>
+        <module>rabbitmq-practice</module>
     </modules>
 
 
