@@ -16,6 +16,7 @@
     <description>salk code library</description>
     <modules>
         <module>rabbitmq</module>
+        <module>netty</module>
     </modules>
 
     <dependencies>
