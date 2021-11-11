@@ -1,12 +1,5 @@
 package com.salk.lib.practice.delaycheck.consumer.constants;
 
-/**
-* @vlog: 高于生活，源于生活
-* @desc: 类的描述:
-* @author: smlz
-* @createDate: 2019/10/11 16:41
-* @version: 1.0
-*/
 public class MqConst {
 
     /**交换机名称*/

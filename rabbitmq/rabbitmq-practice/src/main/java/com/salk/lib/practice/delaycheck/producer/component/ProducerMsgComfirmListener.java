@@ -1,26 +1,19 @@
-package com.salk.lib.practice.delaycheck.producer.compent;
+package com.salk.lib.practice.delaycheck.producer.component;
 
+import com.salk.lib.practice.delaycheck.producer.enumuration.OrderStatusEnum;
+import com.salk.lib.practice.delaycheck.producer.mapper.OrderInfoMapper;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.tuling.enumuration.OrderStatusEnum;
-import com.tuling.mapper.OrderInfoMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
 
-/**
-* @vlog: 高于生活，源于生活
-* @desc: 类的描述:消息确认组件
-* @author: smlz
-* @createDate: 2019/10/11 18:00
-* @version: 1.0
-*/
 @Component
 @Slf4j
-public class TulingMsgComfirmListener implements RabbitTemplate.ConfirmCallback{
+public class ProducerMsgComfirmListener implements RabbitTemplate.ConfirmCallback{
 
     @Autowired
     private OrderInfoMapper orderInfoMapper;

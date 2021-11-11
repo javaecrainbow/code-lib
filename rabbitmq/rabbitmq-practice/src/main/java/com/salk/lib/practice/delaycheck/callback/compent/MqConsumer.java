@@ -2,11 +2,12 @@ package com.salk.lib.practice.delaycheck.callback.compent;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.Channel;
-import com.tuling.bo.MsgTxtBo;
-import com.tuling.constants.MqConst;
-import com.tuling.entity.MessageContent;
-import com.tuling.enumration.MsgStatusEnum;
-import com.tuling.mapper.MsgContentMapper;
+
+import com.salk.lib.practice.delaycheck.callback.bo.MsgTxtBo;
+import com.salk.lib.practice.delaycheck.callback.constants.MqConst;
+import com.salk.lib.practice.delaycheck.callback.entity.MessageContent;
+import com.salk.lib.practice.delaycheck.callback.enumration.MsgStatusEnum;
+import com.salk.lib.practice.delaycheck.callback.mapper.MsgContentMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
@@ -18,9 +19,6 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.util.Date;
 
-/**
- * Created by smlz on 2019/10/13.
- */
 @Component
 @Slf4j
 public class MqConsumer {

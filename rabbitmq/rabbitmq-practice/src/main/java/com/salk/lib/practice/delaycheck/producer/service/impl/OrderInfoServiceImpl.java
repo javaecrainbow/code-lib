@@ -3,29 +3,26 @@ package com.salk.lib.practice.delaycheck.producer.service.impl;
 import java.util.Date;
 import java.util.UUID;
 
+import com.salk.lib.practice.delaycheck.producer.bo.MsgTxtBo;
+import com.salk.lib.practice.delaycheck.producer.component.ProducerMsgSender;
+import com.salk.lib.practice.delaycheck.producer.constants.MqConst;
+import com.salk.lib.practice.delaycheck.producer.entity.MessageContent;
+import com.salk.lib.practice.delaycheck.producer.entity.OrderInfo;
+import com.salk.lib.practice.delaycheck.producer.enumuration.MsgStatusEnum;
+import com.salk.lib.practice.delaycheck.producer.mapper.OrderInfoMapper;
+import com.salk.lib.practice.delaycheck.producer.service.IOrderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.tuling.bo.MsgTxtBo;
-import com.tuling.compent.MsgSender;
-import com.tuling.constants.MqConst;
-import com.tuling.entity.MessageContent;
-import com.tuling.entity.OrderInfo;
-import com.tuling.enumuration.MsgStatusEnum;
-import com.tuling.mapper.OrderInfoMapper;
-import com.tuling.service.IOrderInfoService;
+
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
-* @vlog: 高于生活，源于生活
-* @desc: 类的描述
-* @author: smlz
-* @createDate: 2019/10/11 15:29
-* @version: 1.0
-*/
+ * @author salk
+ */
 @Slf4j
 @Service
 public class OrderInfoServiceImpl implements IOrderInfoService {
@@ -34,9 +31,9 @@ public class OrderInfoServiceImpl implements IOrderInfoService {
     private OrderInfoMapper orderInfoMapper;
 
     @Autowired
-    private MsgSender msgSender;
+    private ProducerMsgSender msgSender;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void saveOrderInfo(OrderInfo orderInfo) {
 
@@ -47,36 +44,28 @@ public class OrderInfoServiceImpl implements IOrderInfoService {
             throw new RuntimeException("操作数据库失败");
         }
     }
-
+    @Override
     public void saveOrderInfoWithMessage(OrderInfo orderInfo) throws JsonProcessingException {
-
         //构建消息对象
         MessageContent messageContent = builderMessageContent(orderInfo.getOrderNo(),orderInfo.getProductNo());
-
         //保存数据库
         saveOrderInfo(orderInfo);
-
         //构建消息发送对象
         MsgTxtBo msgTxtBo = new MsgTxtBo();
         msgTxtBo.setMsgId(messageContent.getMsgId());
         msgTxtBo.setOrderNo(orderInfo.getOrderNo());
         msgTxtBo.setProductNo(orderInfo.getProductNo());
-
         //第一次发送消息
         msgSender.senderMsg(msgTxtBo);
-
-        //TODO:发送延时消息
         msgSender.senderDelayCheckMsg(msgTxtBo);
     }
 
 
-
     /**
-     * 方法实现说明:构建消息对象
-     * @author:smlz
-     * @return:MessageContent 消息实体
-     * @exception:
-     * @date:2019/10/11 17:24
+     * 构建消息体
+     * @param orderNo
+     * @param productNo
+     * @return
      */
     private MessageContent builderMessageContent(long orderNo,Integer productNo) {
         MessageContent messageContent = new MessageContent();
