@@ -29,7 +29,6 @@ public class SpringMyBatisConfig {
 
     @Bean
     public DataSource dataSource() throws SQLException {
-        System.out.println(druidDataSourceProperties);
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setUsername(druidDataSourceProperties.getUsername());
         druidDataSource.setPassword(druidDataSourceProperties.getPassword());

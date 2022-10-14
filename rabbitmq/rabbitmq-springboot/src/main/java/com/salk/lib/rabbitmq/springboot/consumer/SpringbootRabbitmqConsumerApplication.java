@@ -3,6 +3,7 @@ package com.salk.lib.rabbitmq.springboot.consumer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
+
 @SpringBootApplication
 public class SpringbootRabbitmqConsumerApplication {
 

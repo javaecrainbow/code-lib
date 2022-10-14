@@ -26,7 +26,7 @@ import java.util.Map;
 public class TulingMsgReceiver {
 
 
-    @RabbitListener(queues = {"tulingBootQueue"})
+    //@RabbitListener(queues = {"tulingBootQueue"})
     @RabbitHandler
     public void consumerMsg(Message message, Channel channel) throws IOException {
 
@@ -37,7 +37,7 @@ public class TulingMsgReceiver {
         channel.basicAck(deliveryTag,false);
     }
 
-    @RabbitListener(queues = {"tulingBootDelayQueue"})
+    //@RabbitListener(queues = {"tulingBootDelayQueue"})
     @RabbitHandler
     public void consumerDelayMsg(org.springframework.amqp.core.Message message, Channel channel) throws IOException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -128,7 +128,7 @@ public class TulingMsgReceiver {
      * @param channel
      * @throws IOException
      */
-    @RabbitListener(queues = {"tulingBootQueue3"})
+    //@RabbitListener(queues = {"tulingBootQueue3"})
     @RabbitHandler
     public void consumerOrder(org.springframework.amqp.core.Message message,Channel channel) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
