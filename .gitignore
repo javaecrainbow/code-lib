@@ -1,2 +1,9 @@
 **./target/
 /.idea/
+/persist/persist-mybatisplus/target/
+/rabbitmq/rabbitmq-practice/target/classes/
+/db/target/classes/com/salk/lib/db/gbase/
+/netty/netty-rpc/target/classes/com/salk/lib/netty/rpc/
+/rabbitmq/rabbitmq-spring/target/test-classes/com/salk/lib/rabbitmq/spring/
+/rabbitmq/rabbitmq-springboot/target/classes/com/salk/lib/rabbitmq/springboot/
+/spring/target/
