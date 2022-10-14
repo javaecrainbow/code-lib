@@ -12,9 +12,10 @@ public interface MsgContentMapper {
 
 
     /**
-     * 保存消息
-     * @param messageContent
-     * @return
+     * 保存味精内容
+     *
+     * @param messageContent 消息内容
+     * @return int
      */
     int saveMsgContent(MessageContent messageContent);
 

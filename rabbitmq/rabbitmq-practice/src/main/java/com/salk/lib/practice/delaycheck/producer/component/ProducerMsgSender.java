@@ -27,7 +27,7 @@ public class ProducerMsgSender implements InitializingBean {
     private RabbitTemplate rabbitTemplate;
 
     @Autowired
-    private ProducerMsgComfirmListener msgComfirmListener;
+    private ProducerMsgComfirmListener msgConfirmListener;
 
 
     /**
@@ -66,7 +66,7 @@ public class ProducerMsgSender implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        rabbitTemplate.setConfirmCallback(msgComfirmListener);
+        rabbitTemplate.setConfirmCallback(msgConfirmListener);
         //设置消息转换器
         Jackson2JsonMessageConverter jackson2JsonMessageConverter = new Jackson2JsonMessageConverter();
         rabbitTemplate.setMessageConverter(jackson2JsonMessageConverter);

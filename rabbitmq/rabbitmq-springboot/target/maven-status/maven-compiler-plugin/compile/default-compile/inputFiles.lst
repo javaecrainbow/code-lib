@@ -1,0 +1,9 @@
+/Users/salk/code/opensource/code-lib/rabbitmq/rabbitmq-springboot/src/main/java/com/salk/lib/rabbitmq/springboot/producer/compent/SalkMsgSender.java
+/Users/salk/code/opensource/code-lib/rabbitmq/rabbitmq-springboot/src/main/java/com/salk/lib/rabbitmq/springboot/consumer/entity/Order.java
+/Users/salk/code/opensource/code-lib/rabbitmq/rabbitmq-springboot/src/main/java/com/salk/lib/rabbitmq/springboot/consumer/SpringbootRabbitmqConsumerApplication.java
+/Users/salk/code/opensource/code-lib/rabbitmq/rabbitmq-springboot/src/main/java/com/salk/lib/rabbitmq/springboot/producer/compent/SalkRetrunCallBack.java
+/Users/salk/code/opensource/code-lib/rabbitmq/rabbitmq-springboot/src/main/java/com/salk/lib/rabbitmq/springboot/producer/SpringbootRabbitmqProducerApplication.java
+/Users/salk/code/opensource/code-lib/rabbitmq/rabbitmq-springboot/src/main/java/com/salk/lib/rabbitmq/springboot/consumer/compent/TulingMsgReceiver.java
+/Users/salk/code/opensource/code-lib/rabbitmq/rabbitmq-springboot/src/main/java/com/salk/lib/rabbitmq/springboot/producer/compent/SalkConfirmCallBack.java
+/Users/salk/code/opensource/code-lib/rabbitmq/rabbitmq-springboot/src/main/java/com/salk/lib/rabbitmq/springboot/producer/entity/Order.java
+/Users/salk/code/opensource/code-lib/rabbitmq/rabbitmq-springboot/src/main/java/com/salk/lib/rabbitmq/springboot/producer/config/RabbitmqConfig.java

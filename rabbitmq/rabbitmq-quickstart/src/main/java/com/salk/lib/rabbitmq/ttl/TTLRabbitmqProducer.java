@@ -47,7 +47,9 @@ public class TTLRabbitmqProducer {
         //队列的长度
         queueArgs.put("x-max-length",4);
         channel.queueDeclare(queueName,true,false,false,queueArgs);
-
+        channel.txSelect();
+        channel.txCommit();
+        channel.txRollback();
         //绑定
         channel.queueBind(queueName,exchangeName,routingKey);
 

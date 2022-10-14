@@ -61,8 +61,11 @@ public class AckNackRabbitmqConsumer {
                 System.out.println("异常消费消息:" + new String(body));
                 // 重回队列
                 // channel.basicNack(envelope.getDeliveryTag(),false,true);
-                // 不重回队列
+                // 不重回队列会进入死信队列
                 channel.basicNack(envelope.getDeliveryTag(), false, false);
+                //不进入死信队列
+                //channel.basicReject(envelope.getDeliveryTag(),false);
+
             }
         }
     }
