@@ -22,6 +22,10 @@
         <module>db</module>
         <module>plugin</module>
         <module>persist</module>
+        <module>leetcode</module>
+        <module>demo</module>
+        <module>tool</module>
+
     </modules>
 
     <dependencies>
