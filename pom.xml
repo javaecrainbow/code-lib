@@ -20,7 +20,6 @@
         <module>spring</module>
         <module>bpm</module>
         <module>db</module>
-        <module>plugin</module>
         <module>persist</module>
         <module>leetcode</module>
         <module>demo</module>
