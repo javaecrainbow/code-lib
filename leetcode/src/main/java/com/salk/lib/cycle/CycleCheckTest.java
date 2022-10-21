@@ -32,15 +32,8 @@ public class CycleCheckTest {
         }
         System.out.println(tops);
         dealNode("10");
-        //System.out.println(cycle(new Rule("5", "4")));
-        //System.out.println(cycle(new Rule("3", "4")));
-        //System.out.println(cycle(new Rule("10", "7")));
-
-
 
     }
-
-
     public static void dealNode(String currentData){
         for(Node node:tops){
             Node node1 = node.findNode(currentData);
