@@ -15,6 +15,8 @@ public class WhereClauseListener extends MySqlParserBaseListener {
 
     @Override
     public void enterPredicateExpression(MySqlParser.PredicateExpressionContext ctx) {
+        List<MySqlParser.BinaryComparisonPredicateContext> ruleContexts = ctx.getRuleContexts(MySqlParser.BinaryComparisonPredicateContext.class);
+
         super.enterPredicateExpression(ctx);
     }
 
