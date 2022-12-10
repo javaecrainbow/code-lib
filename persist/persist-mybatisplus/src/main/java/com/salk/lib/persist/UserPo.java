@@ -2,6 +2,10 @@ package com.salk.lib.persist;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
+import java.sql.Time;
+import java.util.Date;
 
 /**
  * 用户
@@ -10,7 +14,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @date 2022/10/11
  * @since 2022/10/11
  */
-
+@Data
 @TableName(value = "user")
 public class UserPo {
     private Long id;
@@ -18,6 +22,7 @@ public class UserPo {
     @TableField(value = "age")
     private String age1;
     private String email;
+    private Time birthday;
 
     public UserPo(Long id, String name, String age1, String email) {
         this.id = id;

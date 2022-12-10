@@ -24,6 +24,7 @@
         <module>leetcode</module>
         <module>demo</module>
         <module>tool</module>
+        <module>antlr</module>
 
     </modules>
 
@@ -53,4 +54,36 @@
             </plugin>
         </plugins>
     </build>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>qy-maven-snapshots</id>
+            <url>http://mvn.qpaas.com:2233/repository/qy-maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>qy-maven-releases</id>
+            <url>http://mvn.qpaas.com:2233/repository/qy-maven-releases/</url>
+        </repository>
+    </distributionManagement>
+    <!-- 要分发的成员仓库地址管理 end -->
+    <!-- 远程仓库地址 begin -->
+    <repositories>
+        <repository>
+            <id>qy-maven-public</id>
+            <url>http://mvn.qpaas.com:2233/repository/qy-maven-public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>qy-maven-public</id>
+            <url>http://mvn.qpaas.com:2233/repository/qy-maven-public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
 </project>
