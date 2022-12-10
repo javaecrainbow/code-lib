@@ -1,5 +1,5 @@
 // Generated from java-escape by ANTLR 4.11.1
-package com.salk.lib.antlr.mysql.lexer;
+package com.salk.lib.antlr.mysql.parser;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.ATN;

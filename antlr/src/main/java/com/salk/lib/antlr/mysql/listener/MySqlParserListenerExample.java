@@ -271,7 +271,7 @@ public class MySqlParserListenerExample extends MySqlParserBaseListener {
                 value = getOriginStr(childChild.getText());
             }
         }
-        mySqlParserContext.addCondition(field, symbol, value);
+        mySqlParserContext.addCondition(field, logicalOperator==null?"AND":logicalOperator.getText(), value);
     }
 
     private String getOriginStr(String text) {
